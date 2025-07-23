@@ -3,14 +3,14 @@ name: Deploy WebGL on Tag
 on:
   push:
     tags:
-      - 'v*'  # matches tags like v1.0.0, v2.1, etc.
+      - 'v*'
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout Repository with LFS
+    - name: Checkout with LFS
       uses: actions/checkout@v4
       with:
         lfs: true
@@ -25,5 +25,4 @@ jobs:
       with:
         personal_token: ${{ secrets.PERSONAL_TOKEN }}
         publish_dir: ./
-
-
+        exclude_assets: .github
