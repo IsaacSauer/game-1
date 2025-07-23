@@ -1,0 +1,27 @@
+name: Deploy WebGL Build
+
+on:
+  push:
+    branches:
+      - main  # or your main branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+      with:
+        lfs: true  # pulls LFS files
+
+    - name: Set up Git LFS
+      run: |
+        git lfs install
+        git lfs pull
+
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v4
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./build/WebGL  # Replace with your actual WebGL folder path
