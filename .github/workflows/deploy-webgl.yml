@@ -1,19 +1,19 @@
-name: Deploy WebGL Build
+name: Deploy WebGL on Tag
 
 on:
   push:
-    branches:
-      - main  # or your main branch
+    tags:
+      - 'v*'  # matches tags like v1.0.0, v2.1, etc.
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout Repository
+    - name: Checkout Repository with LFS
       uses: actions/checkout@v4
       with:
-        lfs: true  # pulls LFS files
+        lfs: true
 
     - name: Set up Git LFS
       run: |
@@ -24,4 +24,4 @@ jobs:
       uses: peaceiris/actions-gh-pages@v4
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./build/WebGL  # Replace with your actual WebGL folder path
+        publish_dir: ./  # deploy the root directory
