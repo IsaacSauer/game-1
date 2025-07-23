@@ -16,10 +16,11 @@ jobs:
         lfs: true
         fetch-depth: 0
 
-    - name: Install Git LFS
+    - name: Install Git LFS and Checkout Main
       run: |
         git lfs install
-        git lfs pull
+        git fetch origin main
+        git checkout main
 
     - name: Update timestamp to trigger Pages rebuild
       run: |
@@ -27,7 +28,7 @@ jobs:
         date >> deploy-log.txt
         touch .nojekyll
 
-    - name: Commit and push
+    - name: Commit and Push to Main
       run: |
         git config user.name "github-actions[bot]"
         git config user.email "github-actions[bot]@users.noreply.github.com"
