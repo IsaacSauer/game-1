@@ -11,5 +11,5 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Trigger Netlify Deploy
-        run: curl -X POST -d '{}' https://api.netlify.com/build_hooks/pjv-game-1.netlify.app
+        run: curl -X POST -d '{}' https://api.netlify.com/build_hooks/688924a0cf970acc85a9f698
 
